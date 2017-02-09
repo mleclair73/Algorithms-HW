@@ -3,6 +3,6 @@
  * February 9, 2016															ningfang@ece.neu.edu
  * Malcolm Leclair & Erik Gentile
  *
- * Definition of code class functions. Contains definitions for constructors,
- * printVector, checkCorrect, and checkIncorrect
+ * Definition of deck class functions. Contains definitions for constructors,
+ * overloaded << operator, and shuffle
  **/
