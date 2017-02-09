@@ -6,3 +6,5 @@
  * Definition of deck class functions. Contains definitions for constructors,
  * overloaded << operator, and shuffle
  **/
+
+#include "deck.h"
