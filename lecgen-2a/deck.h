@@ -29,7 +29,7 @@ public:
   // shuffles thhe cards to a random order
   void shuffle();
 
-};// end deck
+};// end deck class
 
 
 #endif

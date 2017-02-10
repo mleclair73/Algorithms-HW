@@ -43,6 +43,6 @@ public:
   //prints the value and suit with ostream (prints names from the stored ints)
   &ostream operator<<(ostream& os, const card &rhs);
 
-};// end card
+};// end card class
 
 #endif
