@@ -3,7 +3,8 @@
  * February 9, 2016															ningfang@ece.neu.edu
  * Malcolm Leclair & Erik Gentile
  *
- * Declaration of deck class and functions.
+ * Declaration of deck class and functions including constructor for a 52 card
+ * deck, overloaded operator<< f, and shuffle.
  **/
 
 #ifndef DECK.H
