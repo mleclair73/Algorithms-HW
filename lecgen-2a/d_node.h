@@ -18,7 +18,7 @@ class node
       {}
 
       // constructor. initialize nodeValue and next
-      node(const T& item, node<T> *nextNode = NULL) : 
+      node(const T& item, node<T> *nextNode = NULL) :
 			  nodeValue(item), next(nextNode)
       {}
 };

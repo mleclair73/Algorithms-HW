@@ -11,6 +11,14 @@
 
 deck::deck()
 {
+  int suit, val;
+  for(suit = 4, i < 0, i--)
+  {
+    for(val = 52, i < 0, i--)
+    {
+      //new node node->next = front; front = newnnode
+    }
+  }
   //fill deck with 52 cards in order suit 0-3 value 1-13
 }// end deck
 
@@ -21,5 +29,5 @@ friend &ostream operator<<(ostream &os, const deck &rhs) //friend so it can asse
 
 void deck::shuffle()
 {
-  //take random element, remove from list, put at front
+  //take random element, remove from list, put at front or however
 }// end shuffle
