@@ -9,9 +9,24 @@
 #ifndef DECK.H
 #define DECK.H
 
+#include <iostream>
+#include "d_node.h"
+#include "card.h"
+
 class deck
 {
-  
+private:
+  node *head;
+public:
+  //default constructor creats a deck of 52 cards
+  deck();
+
+  //prints all of the cards in a deck with ostream
+  friend &ostream operator<<(ostream &os, const deck &rhs);
+
+  //shuffles thhe cards to a random order
+  void shuffle();
+
 };//end deck
 
 

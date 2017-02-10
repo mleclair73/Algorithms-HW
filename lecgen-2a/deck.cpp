@@ -8,3 +8,18 @@
  **/
 
 #include "deck.h"
+
+deck::deck()
+{
+  //fill deck with 52 cards in order suit 0-3 value 1-13
+}// end deck
+
+friend &ostream operator<<(ostream &os, const deck &rhs) //friend so it can assess members
+{
+  //print all cards in the deck
+}// end operator<<
+
+void deck::shuffle()
+{
+  //take random element, remove from list, put at front
+}// end shuffle
