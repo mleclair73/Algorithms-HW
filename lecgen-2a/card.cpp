@@ -57,6 +57,7 @@ std::ostream& operator<<(std::ostream& os, const card &rhs)
     default: {std::stringstream ss;
               ss << rhs.value;
               val = ss.str();}
+            break;
   }
 
   std::string st;
@@ -71,6 +72,7 @@ std::ostream& operator<<(std::ostream& os, const card &rhs)
     case 3: st = "Spades";
             break;
     default: st = "please use a valid suit";
+            break;
   }
   // std::stringstream ss;
   // ss << rhs.suit;

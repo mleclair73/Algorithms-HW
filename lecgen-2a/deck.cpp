@@ -11,17 +11,14 @@
 
 deck::deck()
 {
-  front = new node<card>();
-  std::cout << front->next << std::endl;
+  front = NULL;
   int suit, val;
   for(suit = 3; suit >= 0; suit--)
   {
     for(val = 13; val > 0; val--)
     {
-      node<card> *temp = new node<card>(card(suit, val));
-      temp->next = front;
-      front = temp;
-      //std::cout << temp->nodeValue;
+      node<card> *newCard = new node<card>(card(suit, val),front);
+      front = newCard;
     }
   }
   //fill deck with 52 cards in order suit 0-3 value 1-13
