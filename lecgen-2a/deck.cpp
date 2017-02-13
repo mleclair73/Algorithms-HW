@@ -9,6 +9,7 @@
 
 #include "deck.h"
 
+//fills deck with 52 cards in order suit 0-3 value 1-13
 deck::deck()
 {
   front = NULL;
@@ -21,54 +22,55 @@ deck::deck()
       front = newCard;
     }
   }
-  //fill deck with 52 cards in order suit 0-3 value 1-13
 }// end deck
 
-std::ostream& operator<<(std::ostream &os, const deck &rhs) //friend so it can assess members
+std::ostream& operator<<(std::ostream &os, const deck &rhs)
 {
   node<card> *current;
   current = rhs.front;
   int i = 1;
+  // iterate through list
   while(current != NULL)
   {
-    std::cout << i << current->nodeValue << std::endl;
+    os << current->nodeValue << std::endl;
     current = current->next;
     i++;
   }
+  return os;
 }// end operator<<
 
-void deck::shuffle() //shuffling algo?????????????
+// takes random element, remove from list, put at front or however
+void deck::shuffle()
 {
-  node<card> *curr;
-  node<card> *prev;
-	restart:
-	for (int r = 0; r < 10000; r++)
-	{
 
-		int seed;
+	node<card> *curr = front;
+	node<card> *prev = NULL;
+	int seed;
+
+	for (int r = 0; r < 1000; r++)
+	{
+		restart:
 		seed = rand() % 52 + 1;
 
-		if (prev != NULL)
-		{
-
-			for (int i = 1; i < seed; i++)
+      // iterates through list
+			for (int j = 1; j < seed; j++)
 			{
 				prev = curr;
 				curr = curr->next;
 			}
 
+      // if first element, try again
+			if (prev == NULL)
+			{
+				goto restart;
+			}
+
+      //remove link from list & reset curr / prev
 			prev->next = curr->next;
 			curr->next = front;
 			front = curr;
-		}
-
-		else
-		{
-			goto restart;
-		}
-
-
+			prev = NULL;
+			std::cout << r << std::endl;
 	}
 
-	//take random element, remove from list, put at front or however
 };// end shuffle

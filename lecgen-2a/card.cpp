@@ -43,6 +43,7 @@ int card::getValue()
 
 std::ostream& operator<<(std::ostream& os, const card &rhs)
 {
+  //parse value
   std::string val;
   switch(rhs.value)
   {
@@ -60,6 +61,7 @@ std::ostream& operator<<(std::ostream& os, const card &rhs)
             break;
   }
 
+  //parse suit
   std::string st;
   switch(rhs.suit)
   {
@@ -74,9 +76,7 @@ std::ostream& operator<<(std::ostream& os, const card &rhs)
     default: st = "please use a valid suit";
             break;
   }
-  // std::stringstream ss;
-  // ss << rhs.suit;
-  // st = ss.str();
+  
 
-  return os << "Suit: " << st << " Value: " << val << std::endl;
+  return os << "Suit: " << st << ", Value: " << val << std::endl;
 }//end operator<<
