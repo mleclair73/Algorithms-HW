@@ -12,19 +12,28 @@
 deck::deck()
 {
   int suit, val;
-  for(suit = 4, i < 0, i--)
+  for(suit = 3; suit >= 0; suit--)
   {
-    for(val = 52, i < 0, i--)
+    for(val = 13; val > 0; val--)
     {
-      //new node node->next = front; front = newnnode
+      node<card> *temp = new node<card>(card(suit, val));
+      temp->next = front;
+      front = temp;
+      std::cout << temp->nodeValue;
     }
   }
   //fill deck with 52 cards in order suit 0-3 value 1-13
 }// end deck
 
-friend &ostream operator<<(ostream &os, const deck &rhs) //friend so it can assess members
+std::ostream& operator<<(std::ostream &os, const deck &rhs) //friend so it can assess members
 {
-  //print all cards in the deck
+  node<card> *current = new node<card>;
+  current = rhs.front;
+  while(current != NULL)
+  {
+    std::cout << current << std::endl;
+    current = current->next;
+  }
 }// end operator<<
 
 void deck::shuffle()

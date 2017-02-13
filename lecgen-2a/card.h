@@ -6,11 +6,12 @@
  * Declaration of card class and functions. Contains prototypes for constructor,
  * setValue, setSuit, getValue, getSuit and  overloaded << operator,
  **/
-#ifndef CARD.H
-#define CARD.H
+#ifndef CARD
+#define CARD
 
 #include<iostream>
 #include<string>
+#include<sstream>
 
 class card
 {
@@ -41,7 +42,7 @@ public:
   int getValue();
 
   //prints the value and suit with ostream (prints names from the stored ints)
-  &ostream operator<<(ostream& os, const card &rhs);
+  friend std::ostream& operator<<(std::ostream& os, const card &rhs);
 
 };// end card class
 

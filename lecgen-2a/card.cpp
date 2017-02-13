@@ -41,27 +41,40 @@ int card::getValue()
   return value;
 }// end getValue
 
-&ostream operator<<(ostream& os, const card &rhs)
+std::ostream& operator<<(std::ostream& os, const card &rhs)
 {
-  string val;
-  switch(value)
+  std::string val;
+  switch(rhs.value)
   {
     case 1: val = "Ace";
+            break;
     case 11: val = "Jack";
+            break;
     case 12: val = "Queen";
+            break;
     case 13: val = "King";
-    default: val = std::toString(value);
+            break;
+    default: {std::stringstream ss;
+              ss << rhs.value;
+              val = ss.str();}
   }
 
-  string st;
-  switch(suit)
+  std::string st;
+  switch(rhs.suit)
   {
     case 0: st = "Clubs";
+            break;
     case 1: st = "Diamonds";
+            break;
     case 2: st = "Hearts";
+            break;
     case 3: st = "Spades";
-    default: st = "invalid suit type"
+            break;
+    default: st = "please use a valid suit";
   }
+  // std::stringstream ss;
+  // ss << rhs.suit;
+  // st = ss.str();
 
-  return os << "Suit: " << st << " Value: " << value << std::endl;
+  return os << "Suit: " << st << " Value: " << val << std::endl;
 }//end operator<<

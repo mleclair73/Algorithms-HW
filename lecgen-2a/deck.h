@@ -7,8 +7,8 @@
  * deck, overloaded operator<< f, and shuffle.
  **/
 
-#ifndef DECK.H
-#define DECK.H
+#ifndef DECK
+#define DECK
 
 #include <iostream>
 #include "d_node.h"
@@ -19,12 +19,13 @@ class deck
 private:
   // points to first node in list
   node<card> *front;
+
 public:
   // default constructor creats a deck of 52 cards
   deck();
 
   // prints all of the cards in a deck with ostream
-  friend &ostream operator<<(ostream &os, const deck &rhs);
+  friend std::ostream& operator<<(std::ostream &os, const deck &rhs);
 
   // shuffles thhe cards to a random order
   void shuffle();
