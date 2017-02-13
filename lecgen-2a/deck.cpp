@@ -31,15 +31,19 @@ std::ostream& operator<<(std::ostream &os, const deck &rhs) //friend so it can a
 {
   node<card> *current;
   current = rhs.front;
+  int i = 1;
   while(current != NULL)
   {
-    std::cout << current->nodeValue << std::endl;
+    std::cout << i << current->nodeValue << std::endl;
     current = current->next;
+    i++;
   }
 }// end operator<<
 
 void deck::shuffle() //shuffling algo?????????????
 {
+  node<card> *curr;
+  node<card> *prev;
 	restart:
 	for (int r = 0; r < 10000; r++)
 	{

@@ -11,6 +11,7 @@
 #define DECK
 
 #include <iostream>
+#include <cstdlib>
 #include "d_node.h"
 #include "card.h"
 
