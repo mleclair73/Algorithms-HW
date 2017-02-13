@@ -1,0 +1,6 @@
+#ignore .o files
+*.o
+#ignore main
+main
+#ignore .zip files
+*.zip
