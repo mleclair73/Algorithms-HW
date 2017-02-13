@@ -11,6 +11,8 @@
 
 deck::deck()
 {
+  front = new node<card>();
+  std::cout << front->next << std::endl;
   int suit, val;
   for(suit = 3; suit >= 0; suit--)
   {
@@ -19,7 +21,7 @@ deck::deck()
       node<card> *temp = new node<card>(card(suit, val));
       temp->next = front;
       front = temp;
-      std::cout << temp->nodeValue;
+      //std::cout << temp->nodeValue;
     }
   }
   //fill deck with 52 cards in order suit 0-3 value 1-13
@@ -27,16 +29,45 @@ deck::deck()
 
 std::ostream& operator<<(std::ostream &os, const deck &rhs) //friend so it can assess members
 {
-  node<card> *current = new node<card>;
+  node<card> *current;
   current = rhs.front;
   while(current != NULL)
   {
-    std::cout << current << std::endl;
+    std::cout << current->nodeValue << std::endl;
     current = current->next;
   }
 }// end operator<<
 
-void deck::shuffle()
+void deck::shuffle() //shuffling algo?????????????
 {
-  //take random element, remove from list, put at front or however
-}// end shuffle
+	restart:
+	for (int r = 0; r < 10000; r++)
+	{
+
+		int seed;
+		seed = rand() % 52 + 1;
+
+		if (prev != NULL)
+		{
+
+			for (int i = 1; i < seed; i++)
+			{
+				prev = curr;
+				curr = curr->next;
+			}
+
+			prev->next = curr->next;
+			curr->next = front;
+			front = curr;
+		}
+
+		else
+		{
+			goto restart;
+		}
+
+
+	}
+
+	//take random element, remove from list, put at front or however
+};// end shuffle
