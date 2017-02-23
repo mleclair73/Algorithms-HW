@@ -4,3 +4,5 @@
 main
 #ignore .zip files
 *.zip
+#ignore makefiles
+makefile
