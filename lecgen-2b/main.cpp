@@ -1,0 +1,145 @@
+#include "deck.h"
+#include<string>
+#include<sstream>
+#include<iostream>
+
+void playFlip();
+void cardtoPoints(int &points, card &flip);
+void flipFalse(bool (&flipArr)[24]);
+void tripleShuffle(deck &d);
+void deal24(deck &game, deck &hand);
+
+using namespace std;
+int main()
+{
+  srand(time(NULL));
+  // deck d1 = deck();
+  // cout << "The Deck is: " << endl;
+  // cout << d1;
+  // d1.shuffle();
+  // cout << "The Deck after shuffling is: " << endl;
+  // cout << d1;
+  //
+  // card c = d1.deal();
+  //
+  // d1.replace(c);
+  //
+  // cout << d1;
+  // cout << c;
+  // system("pause");
+  playFlip();
+  return 0;
+}
+
+
+
+void playFlip()
+{
+  deck flip = deck(true);                     // make deck of 52 cards
+  tripleShuffle(flip);                        // shuffle 3 times
+
+  deck hand = deck(false);                    // make empty deck
+  deal24(flip, hand);                         // deal first 24 from flip to hand
+
+  bool flipped[24];                           // array of booleans to determine
+  flipFalse(flipped);                         // if card is used, init to False
+
+  cout << "The cards remaining in the deck are : \n" << flip;
+  cout << "Your hand is: \n" << hand;
+
+  int points = 0;
+  string response;
+  int cardChoice;
+  node<card> *curr;
+
+
+
+  while(true)
+  {
+    cout << "Enter the number of a card to flip or press q to end the game"
+         << endl;
+    curr = hand.getFront();
+    startloop:
+    cin >> response;
+    if(response == "q")
+    {
+      cout << "You earned: " << points << " points\n";
+      return;   //or go to
+    }
+    stringstream stoi(response);
+    stoi >> cardChoice;
+    //cout << cardChoice << endl;
+    if(cardChoice == 0)
+    {
+      cout << "please input a valid input\n";
+      goto startloop;
+    }
+    if(flipped[cardChoice] == false)
+    {
+      flipped[cardChoice] = true;
+      for(int i = 0; i < cardChoice-1; i++)
+      {
+        curr = curr->next;
+      }
+      cardtoPoints(points, curr->nodeValue);
+      cout << curr->nodeValue;
+    }
+    else
+    {
+      cout << "Please input the value of a card you haven't flipped yet\n";
+    }
+
+  }
+  cout << "You earned: " << points << " points\n";
+  return;
+}// end playFlip
+
+void cardtoPoints(int &points, card &flip)
+{
+  switch(flip.getValue())
+  {
+    case 1:  points += 10;
+             break;
+    case 7:  points /= 2;
+             break;
+    case 8:  break;
+    case 9:  break;
+    case 10: break;
+    case 11: points += 5;
+             break;
+    case 12: points += 5;
+             break;
+    case 13: points += 5;
+             break;
+    default: points = 0;
+             break;
+    }
+    if(flip.getSuit() == 2)
+  {
+    points++;
+  }
+}
+
+void flipFalse(bool (&flipArr)[24])
+{
+  for(int i = 0; i<24; i++)
+  {
+    flipArr[i] = false;
+  }
+}
+
+void tripleShuffle(deck &d)
+{
+  for(int i = 0; i<3; i++)
+  {
+    d.shuffle();
+  }
+}
+
+void deal24(deck &game, deck &hand)
+{
+  for(int i = 0; i<24; i++)
+  {
+    hand.replace(game.deal());
+  }
+}
