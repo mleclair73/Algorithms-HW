@@ -69,6 +69,8 @@ void playFlip()
     stringstream stoi(response);
     stoi >> cardChoice;
     //cout << cardChoice << endl;
+
+
     if(cardChoice == 0)
     {
       cout << "please input a valid input\n";
