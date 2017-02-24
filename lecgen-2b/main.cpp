@@ -26,7 +26,7 @@ int main()
   //
   // cout << d1;
   // cout << c;
-  // system("pause");
+  system("pause");
   playFlip();
   return 0;
 }
