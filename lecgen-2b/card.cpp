@@ -1,10 +1,11 @@
 /**
- * Assignment 2a EECE 2560											Ningfang Mi
- * February 9, 2016															ningfang@ece.neu.edu
+ * Assignment 2b EECE 2560											Ningfang Mi
+ * February 23, 2016															ningfang@ece.neu.edu
  * Malcolm Leclair & Erik Gentile
  *
  * Definition of card class functions. Contains definitions for constructor,
- * setValue, setSuit, getValue, getSuit and  overloaded << operator,
+ * setValue, setSuit, getValue, getSuit, overloaded << operator, copy
+ * constructor and overladed = operator.
  **/
 
 #include "card.h"
@@ -84,11 +85,11 @@ std::ostream& operator<<(std::ostream& os, const card &rhs)
 
 
   return os << "Suit: " << st << ", Value: " << val << std::endl;
-}//end operator<<
+}// end operator<<
 
 card& card::operator=(const card & rhs)
 {
 	suit = rhs.suit;
 	value = rhs.value;
   return *this;
-}//return operator=
+}// end operator=

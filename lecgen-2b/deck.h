@@ -1,10 +1,10 @@
 /**
- * Assignment 2a EECE 2560											Ningfang Mi
- * February 9, 2016															ningfang@ece.neu.edu
+ * Assignment 2b EECE 2560											Ningfang Mi
+ * February 23, 2016															ningfang@ece.neu.edu
  * Malcolm Leclair & Erik Gentile
  *
  * Declaration of deck class and functions including constructor for a 52 card
- * deck, overloaded operator<< f, and shuffle.
+ * deck, overloaded operator<< f,  shuffle replace, deal and getFront.
  **/
 
 #ifndef DECK
@@ -39,12 +39,11 @@ public:
 	// the card is also removed from the deck
 	card deal();
 
-  //places a card at the bottom of the deck
+  // places a card at the bottom of the deck
   void replace(const card &bottomcard);
 
-  //overloaded
+  //getter for front
   node<card> * getFront(){return front;};
-
 
 };// end deck class
 

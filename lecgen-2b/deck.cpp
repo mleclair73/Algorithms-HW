@@ -1,15 +1,14 @@
 /**
- * Assignment 2a EECE 2560											Ningfang Mi
- * February 9, 2016															ningfang@ece.neu.edu
+ * Assignment 2b EECE 2560											Ningfang Mi
+ * February 23, 2016															ningfang@ece.neu.edu
  * Malcolm Leclair & Erik Gentile
  *
  * Definition of deck class functions. Contains definitions for constructors,
- * overloaded << operator, and shuffle
+ * overloaded << operator, shuffle, replace and deal
  **/
 
 #include "deck.h"
 
-//fills deck with 52 cards in order suit 0-3 value 1-13
 deck::deck(const bool &newDeck)
 {
   front = NULL;
@@ -25,15 +24,13 @@ deck::deck(const bool &newDeck)
       }// end for val
     }// end for suit
   }// end if
-  //std::cout << "deck made\n";
 }// end deck
 
-//deallocates the list of cards
 deck::~deck()
 {
 	node<card> *prev = NULL;
 
-	// iterates through list deleting the front node untill none remain
+	// iterates through list deleting the front node until none remain
 	while(front!= NULL)
 	{
 		prev = front;
@@ -58,7 +55,6 @@ std::ostream& operator<<(std::ostream &os, const deck &rhs)
   return os;
 }// end operator<<
 
-// takes random element, remove from list, put at front or however
 void deck::shuffle()
 {
   std::cout << "Shuffling Deck ... \n";
@@ -94,7 +90,6 @@ void deck::shuffle()
 
 };// end shuffle
 
-// returns the top card in the deck then removes that top card
 card deck::deal()
 {
 	node<card> *prev = NULL;
@@ -112,23 +107,22 @@ card deck::deal()
 
 }// end deal
 
-
-// the passed card is placed on the bottom of the deck
 void deck::replace(const card& bottomcard)
 {
 	node<card> *curr = front;
 	node<card> *prev = NULL;
 	node<card> *bottomCardNode = new node<card>(bottomcard, NULL);
+
   if(front == NULL)
   {
-    front = bottomCardNode;
+    front = bottomCardNode;                       //empty deck insertion
     return;
   }
 
 	while (curr->next != NULL)
 	{
 		prev = curr;
-		curr = curr->next;
-	}
+		curr = curr->next;                            //insert after all cards in
+	}                                               //deck
   curr->next = bottomCardNode;
 }// end replace
