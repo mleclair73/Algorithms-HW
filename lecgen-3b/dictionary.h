@@ -1,11 +1,11 @@
 /**
-* Assignment 3a EECE 2560													Ningfang Mi
-* March 13, 2016															ningfang@ece.neu.edu
+* Assignment 3b EECE 2560													Ningfang Mi
+* March 22, 2017															ningfang@ece.neu.edu
 * Malcolm Leclair & Erik Gentile
 *
 * Declaration of dictionary class and functions. Contains prototypes for
 * dictionary constructor size(), at(), loadDictionary(), overloaded operator <<,
-* sortDict(), swap(), and wordLookup().
+* sortDict(), swap(), binarySearch(), quickSort() and heapSort().
 **/
 
 #ifndef DICTIONARY
@@ -17,6 +17,7 @@
 #include <vector>
 #include <stdio.h>
 #include <math.h>
+#include "heap.h"
 
 using namespace std;
 
@@ -26,7 +27,6 @@ class dictionary
 private:
 	// vector continaing each word in the dictionary
 	vector<string> dictionaryList;
-
 
 public:
 	// access size of the dictionary vector
@@ -47,12 +47,19 @@ public:
 	// swaps two elements in the wordList at the given indices
 	void swap(const int &first, const int &second);
 
-	// binary search for a target puzzleWord between two indies
-	int wordLookup(string puzzleWord, int indexLow, int indexHigh);
+	// binary search for a target puzzleWord between two indices
+	int binarySearch(string key, int left, int right);
 
-	void quickSort(const int &right, const int &left);
+	// sorts the function using quicksort algorithm
+	void quickSort(const int &left, const int &right);
 
-	int partition(const int &lo, const int &hi);
+	// splits the subset of the dictionary into two parts, of elements
+	// greater/equal to the partiion or less than the partition
+	int partition(const int &p, const int &right);
+
+	// sorts dictionary using heapsort
+	void heapsort();
+
 };// end dictionary
 
-#endif
+#endif// end DICTIONARY

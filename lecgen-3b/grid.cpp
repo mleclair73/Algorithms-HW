@@ -1,6 +1,6 @@
 /**
-* Assignment 3a EECE 2560									Ningfang Mi
-* March 13, 2016											ningfang@ece.neu.edu
+* Assignment 3b EECE 2560									Ningfang Mi
+* March 22, 2017											ningfang@ece.neu.edu
 * Malcolm Leclair & Erik Gentile
 *
 * Implementation of grid class and functions. Contains
@@ -29,30 +29,33 @@ void grid::loadMatrix(const string &fileName)
 
 	if(!infile)
 	{
-		fileOpenError(fileName.c_str());
+		throw fileOpenError(fileName);
 		return;
 	}
 	infile >> rows;
 	infile >> cols;
-	getline(infile,line);									// removes line break after rows and cols
+	getline(infile,line);				  // removes line break after rows and cols
 	mat.resize(rows,cols);
 
 	int i = 0;
 	char letter;
 
-	while(getline (infile, line) && i < rows)				// while loop reads file into matrix using stringstream
+	// while loop reads file into matrix using stringstream
+	while(getline (infile, line) && i < rows)
 	{
 		stringstream letters(line);
 		int j = 0;
+
+		//while letters in line
 		while(letters && j < cols)
 		{
 			letters >> letter;
 			mat[i][j] = letter;
-
 			j++;
-		}
+		}// end while letters in line
+
 		i++;
-	}
+	}//end while file
 
 	infile.close();
 }// end loadMatrix()

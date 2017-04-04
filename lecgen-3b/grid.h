@@ -1,3 +1,16 @@
+/**
+* Assignment 3b EECE 2560									Ningfang Mi
+* March 22, 2017											ningfang@ece.neu.edu
+* Malcolm Leclair & Erik Gentile
+*
+* Declaration of grid class and functions. Contains
+* declarations for grid constructor loadMatrix(),
+* overloaded operator<<, and findWords().
+**/
+
+#ifndef GRID_H
+#define GRID_D
+
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -14,7 +27,7 @@ struct gword
 		string str;
 		int x;
 		int y;
-};
+};// gword struct
 
 class grid
 {
@@ -34,4 +47,6 @@ public:
 
 	vector<gword> findWords();
 
-};
+}; // grid class
+
+#endif // GRID_H
