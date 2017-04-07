@@ -1,6 +1,6 @@
 /* Erik Gentile and Malcolm Leclair
 * Project 4a
-* March 30, 2017
+* April 5, 2017
 * Engineering Algorithms
 */
 
@@ -24,33 +24,34 @@ const int MinValue = 1; // MinValue for Numbers in puzzle
 const int MaxValue = 9; // MaxValue for Numbers in puzzle
 
 int numSolutions= 0; // number of possible solutions
-void readFile(ifstream &fin, string fileName);
+int readFile(ifstream &fin, string fileName); // solves all puzzles returns
+                                              // average iterations required
+using namespace std;
 
 int main()
 {
     ifstream fin;
 
     // Read the sample grid from the file.
-    string fileName = "sudoku1.txt";
-    readFile(fin, fileName);
-    cout << "#########################################" << endl;
-    fileName = "sudoku2.txt";
-    readFile(fin, fileName);
-    cout << "#########################################" << endl;
-    fileName = "sudoku3.txt";
-    readFile(fin, fileName);
-}
+    string fileName = "sudoku.txt";
+    int avg = readFile(fin, fileName);
+    cout << "Average #of recursions iterations required to solve a puzzle: " << avg << endl;
+}// end main
 
-void readFile(ifstream &fin, string fileName)
+// reads the file, solves all the puzzles in the board and returns the average
+// number of iterations required to solve
+int readFile(ifstream &fin, string fileName)
 {
-    cout << fileName << endl;
+    int puzzlesSolved;
+    int totalRecursiveCount;
+    //cout << fileName << endl;
     fin.open(fileName.c_str());
 	// if file cannot open, give error
     if (!fin)
     {
         cerr << "Cannot open " << fileName << endl;
         exit(1);
-    }
+    }// end if
 
     try
     {
@@ -59,21 +60,24 @@ void readFile(ifstream &fin, string fileName)
         while (fin && fin.peek() != 'Z')
         {
             b1.initialize(fin);
-            b1.print();
-            b1.printConflicts();
-			cout << "Is the board solved? 0 for False, 1 for True: ";
-			cout << b1.isSolved() << endl;
-            b1.clearCell(1,1);					// Clear Cell 1,1 Test
-            cout << "Cell 1,1 cleared" << endl;
-            b1.print();
-            b1.printConflicts();
+            //b1.print();
+            b1.solve();
+            if (b1.getRecursiveCount() != 0)
+            {
+                totalRecursiveCount += b1.getRecursiveCount();
+                puzzlesSolved += 1;
+            }// end if
 
-        }
-    }
+        }// end while
+        return totalRecursiveCount/puzzlesSolved;
+
+    }// end try
+
     catch  (indexRangeError &ex)
     {
         cout << ex.what() << endl;
         exit(1);
-    }
+    }// end catch
+
     fin.close();
-}
+}// end readFile()
